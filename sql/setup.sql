@@ -16,5 +16,6 @@ CREATE TABLE consumer (
   description TEXT NOT NULL,
   age INTEGER NOT NULL,
   gender TEXT NOT NULL,
-  location TEXT NOT NULL
+  location TEXT NOT NULL,
+  models_id BIGINT REFERENCES model_s(id) 
 );
