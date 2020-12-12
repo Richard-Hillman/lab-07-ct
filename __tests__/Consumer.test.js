@@ -2,7 +2,7 @@ const fs = require('fs');
 const request = require('supertest');
 const app = require('../lib/app');
 const pool = require('../lib/utils/pool');
-const ModelS = require('../lib/tesla/Consumer');
+const Consumer = require('../lib/tesla/Consumer');
 
 describe('Consumer', () => {
 
@@ -16,20 +16,21 @@ describe('Consumer', () => {
   
   // -----------------------------------------------
   
-  test('post a new consumer row to the data table', async() => {
+  it('post a new consumer row to the data table', async() => {
 
     const post = {
       description: 'green',
-      age: '16-20',
+      age: 16,
       gender: 'trans',
       location: 'east'
     };
 
     const expectation = {
       description: 'green',
-      age: '16-20',
+      age: 16,
       gender: 'trans',
-      location: 'east'
+      location: 'east',
+      id: '1'
     };
 
     const data = await request(app)
@@ -42,21 +43,21 @@ describe('Consumer', () => {
 
   // -----------------------------------------------------
 
-  test('gets all rows from consumer table', async() => {
+  it('gets all rows from consumer table', async() => {
 
     const expectation = [
       {
         description: 'green',
-        age: '16-20',
+        age: 16,
         gender: 'trans',
-        location: 'east'
+        location: 'east',
+        id: '1'
       }
     ];
 
 
     const data = await request(app) 
       .get('/tesla/consumer/')
-      .expect('Content-Type', /json/)
       .expect(200);
     expect(data.body).toEqual(expectation); 
       
@@ -65,11 +66,11 @@ describe('Consumer', () => {
 
   // -----------------------------------------------------
 
-  test('get consumer by id', async() => { 
+  it('get consumer by id', async() => { 
 
     const teslaConsumer = await Consumer.insert({
       description: 'green',
-      age: '16-20',
+      age: 16,
       gender: 'trans',
       location: 'east'
     });
@@ -79,7 +80,7 @@ describe('Consumer', () => {
       .put(`/tesla/consumer/${teslaConsumer.id}`)
       .send({ 
         description: 'green',
-        age: '16-20',
+        age: 16,
         gender: 'trans',
         location: 'west'
       });
@@ -87,7 +88,7 @@ describe('Consumer', () => {
     expect(response.body).toEqual({
       ...teslaConsumer,
       description: 'green',
-      age: '16-20',
+      age: 16,
       gender: 'trans',
       location: 'west'
     });
@@ -95,10 +96,10 @@ describe('Consumer', () => {
 
   //   -----------------------------------------------------
 
-  test('delete a consumer', async() => {
+  it('delete a consumer', async() => {
     const expectation = {
       description: 'green',
-      age: '16-20',
+      age: 16,
       gender: 'trans',
       location: 'east',
       id:'1'

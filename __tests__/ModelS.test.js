@@ -16,7 +16,7 @@ describe('endpoint', () => {
 
   // -----------------------------------------------
 
-  test('post a new car model_s row to the data table', async() => {
+  it('post a new car model_s row to the data table', async() => {
 
     const post = {
       title: 'Model S',
@@ -48,7 +48,7 @@ describe('endpoint', () => {
 
   // -----------------------------------------------------
 
-  test('gets all rows from models table', async() => {
+  it('gets all rows from models table', async() => {
 
     const expectation = [
       {
@@ -74,7 +74,7 @@ describe('endpoint', () => {
 
   // -----------------------------------------------------
 
-  test('get car by id', async() => { 
+  it('get car by id', async() => { 
 
     const tesla = await ModelS.insert({
       title: 'Model S',
@@ -110,7 +110,7 @@ describe('endpoint', () => {
 
   //   -----------------------------------------------------
 
-  test('delete a car', async() => {
+  it('delete a car', async() => {
     const expectation = {
       title: 'Model S',
       descript: 'an evolution in automobile engineering. Dual Motor Model S is a categorical improvement on conventional all-wheel drive systems. With two motors, one in the front and one in the rear, Model S digitally and independently controls torque to the front and rear wheels.', 
