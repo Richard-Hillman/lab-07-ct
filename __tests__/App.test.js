@@ -86,15 +86,18 @@ describe('Consumer', () => {
       {  description: 'green',
         age: 16,
         gender: 'trans',
-        location: 'east' },
+        location: 'east',
+        modelsId: modelS.id},
       { description: 'orange',
         age: 17,
         gender: 'trans',
-        location: 'east' },
+        location: 'east',
+        modelsId: modelS.id },
       {  description: 'red',
         age: 19,
         gender: 'trans',
-        location: 'east'
+        location: 'east',
+        modelsId: modelS.id
       }
     ].map(consumers => Consumer.insert(consumers)));
 

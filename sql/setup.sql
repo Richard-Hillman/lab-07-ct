@@ -1,7 +1,7 @@
  DROP TABLE if EXISTS model_s CASCADE;
  DROP TABLE if EXISTS consumer;
  
- CREATE TABLE  model_s (
+ CREATE TABLE model_s (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   title TEXT NOT NULL,
   descript TEXT, 
