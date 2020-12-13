@@ -130,7 +130,8 @@ describe('Consumer', () => {
       .get('/tesla/model_s/')
       .expect('Content-Type', /json/)
       .expect(200);
-    expect(data.body).toEqual(expectation); 
+    expect(data.body).toEqual(expect.arrayContaining(expectation)); 
+    expect(data.body).toHaveLength(expectation.length);
       
   });
 
@@ -236,8 +237,9 @@ describe('Consumer', () => {
     const data = await request(app) 
       .get('/tesla/consumer/')
       .expect(200);
-    expect(data.body).toEqual(expectation); 
-      
+    expect(data.body).toEqual(expect.arrayContaining(expectation)); 
+    expect(data.body).toHaveLength(expectation.length);
+
   });
 
   // -----------------------------------------------------
