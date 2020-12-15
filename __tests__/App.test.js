@@ -3,7 +3,7 @@ const pool = require('../lib/utils/pool');
 const request = require('supertest');
 const app = require('../lib/app');
 const ModelS = require('../lib/tesla/ModelS');
-const Consumer = require('../lib/tesla/consumer'); 
+const Consumer = require('../lib/tesla/Consumer'); 
 
 // -----------------------------------------------
 
