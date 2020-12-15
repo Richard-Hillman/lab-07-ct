@@ -3,7 +3,7 @@ const pool = require('../lib/utils/pool');
 const request = require('supertest');
 const app = require('../lib/app');
 const ModelS = require('../lib/tesla/ModelS');
-const Consumer = require('../lib/tesla/consumer'); 
+const Consumer = require('../lib/tesla/Consumer'); 
 
 // -----------------------------------------------
 
@@ -86,15 +86,18 @@ describe('Consumer', () => {
       {  description: 'green',
         age: 16,
         gender: 'trans',
-        location: 'east' },
+        location: 'east',
+        modelsId: modelS.id},
       { description: 'orange',
         age: 17,
         gender: 'trans',
-        location: 'east' },
+        location: 'east',
+        modelsId: modelS.id },
       {  description: 'red',
         age: 19,
         gender: 'trans',
-        location: 'east'
+        location: 'east',
+        modelsId: modelS.id
       }
     ].map(consumers => Consumer.insert(consumers)));
 
@@ -127,7 +130,8 @@ describe('Consumer', () => {
       .get('/tesla/model_s/')
       .expect('Content-Type', /json/)
       .expect(200);
-    expect(data.body).toEqual(expectation); 
+    expect(data.body).toEqual(expect.arrayContaining(expectation)); 
+    expect(data.body).toHaveLength(expectation.length);
       
   });
 
@@ -233,8 +237,9 @@ describe('Consumer', () => {
     const data = await request(app) 
       .get('/tesla/consumer/')
       .expect(200);
-    expect(data.body).toEqual(expectation); 
-      
+    expect(data.body).toEqual(expect.arrayContaining(expectation)); 
+    expect(data.body).toHaveLength(expectation.length);
+
   });
 
   // -----------------------------------------------------
